@@ -3,43 +3,118 @@ title: "New York Collisions"
 ---
 This page can be found in your project at `/pages/index.md`. Make a change to the markdown file and save it to see the change take effect in your browser.
 
-```sql collisions_by_borough
-SELECT * FROM ny_collisions.fct_borough_collisions
+```sql ns_borough_yoy
+SELECT * FROM ny_collisions.fct_borough_yoy
+WHERE borough = 'NOT SPECIFIED'
 ```
 
-<BarChart 
+```sql bx_borough_yoy
+SELECT * FROM ny_collisions.fct_borough_yoy
+WHERE borough = 'BRONX'
+```
+
+```sql bky_borough_yoy
+SELECT * FROM ny_collisions.fct_borough_yoy
+WHERE borough = 'BROOKLYN'
+```
+
+```sql man_borough_yoy
+SELECT * FROM ny_collisions.fct_borough_yoy
+WHERE borough = 'MANHATTAN'
+```
+
+```sql qn_borough_yoy
+SELECT * FROM ny_collisions.fct_borough_yoy
+WHERE borough = 'QUEENS'
+```
+
+```sql st_borough_yoy
+SELECT * FROM ny_collisions.fct_borough_yoy
+WHERE borough = 'STATEN ISLAND'
+```
+
+
+
+<!-- <BarChart 
     data={collisions_by_borough} 
     x=new_borough 
     y=collisions
-    yFmt=k
+    yFmt=3k
+    colorPalette={
+        '#FF6600'
+    }
+/> -->
+<BigValue
+    data={ns_borough_yoy}
+    title="Not Specified"
+    value=collisions
+    comparison=YoY
+    comparisonTitle="since 2023"
+    fmt=0,000
+    downIsGood=true
 />
 
-```sql orders_by_category
-  select 
-      date_trunc('month', order_datetime) as month,
-      sum(sales) as sales_usd,
-      category
-  from needful_things.orders
-  where category like '${inputs.category.value}'
-  and date_part('year', order_datetime) like '${inputs.year.value}'
-  group by all
-  order by sales_usd desc
+<BigValue
+    data={bx_borough_yoy}
+    title="Bronx"
+    value=collisions
+    comparison=YoY
+    comparisonTitle="since 2023"
+    fmt=0,000
+    downIsGood=true
+/>
+
+<BigValue
+    data={bky_borough_yoy}
+    title="Brooklyn"
+    value=collisions
+    comparison=YoY
+    comparisonTitle="since 2023"
+    fmt=0,000
+    downIsGood=true
+/>
+
+<BigValue
+    data={man_borough_yoy}
+    title="Manhattan"
+    value=collisions
+    comparison=YoY
+    comparisonTitle="since 2023"
+    fmt=0,000
+    downIsGood=true
+/>
+
+<BigValue
+    data={qn_borough_yoy}
+    title="Queens"
+    value=collisions
+    comparison=YoY
+    comparisonTitle="since 2023"
+    fmt=0,000
+    downIsGood=true
+/>
+
+<BigValue
+    data={st_borough_yoy}
+    title="Staten Island"
+    value=collisions
+    comparison=YoY
+    comparisonTitle="since 2023"
+    fmt=0,000
+    downIsGood=true
+/>
+
+```sql borough_totals
+SELECT new_borough AS borough, collisions FROM ny_collisions.fct_borough_collisions
 ```
 
 <BarChart
-    data={orders_by_category}
-    title="Sales by Month, {inputs.category.label}"
-    x=month
-    y=sales_usd
-    series=category
+    data={borough_totals}
+    title="Total Collisions by Borough"
+    x=borough
+    y=collisions
+    swapXY=true
+    colorPalette={
+        '#FF6600'
+    }
 />
-
-## What's Next?
-- [Connect your data sources](settings)
-- Edit/add markdown files in the `pages` folder
-- Deploy your project with [Evidence Cloud](https://evidence.dev/cloud)
-
-## Get Support
-- Message us on [Slack](https://slack.evidence.dev/)
-- Read the [Docs](https://docs.evidence.dev/)
-- Open an issue on [Github](https://github.com/evidence-dev/evidence)
