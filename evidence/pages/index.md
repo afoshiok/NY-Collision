@@ -1,29 +1,18 @@
 ---
-title: Welcome to Evidence
+title: "New York Collisions"
 ---
+This page can be found in your project at `/pages/index.md`. Make a change to the markdown file and save it to see the change take effect in your browser.
 
-<Details title='How to edit this page'>
-
-  This page can be found in your project at `/pages/index.md`. Make a change to the markdown file and save it to see the change take effect in your browser.
-</Details>
-
-```sql categories
-  select
-      category
-  from needful_things.orders
-  group by category
+```sql collisions_by_borough
+SELECT * FROM ny_collisions.fct_borough_collisions
 ```
 
-<Dropdown data={categories} name=category value=category>
-    <DropdownOption value="%" valueLabel="All Categories"/>
-</Dropdown>
-
-<Dropdown name=year>
-    <DropdownOption value=% valueLabel="All Years"/>
-    <DropdownOption value=2019/>
-    <DropdownOption value=2020/>
-    <DropdownOption value=2021/>
-</Dropdown>
+<BarChart 
+    data={collisions_by_borough} 
+    x=new_borough 
+    y=collisions
+    yFmt=k
+/>
 
 ```sql orders_by_category
   select 
