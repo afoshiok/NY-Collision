@@ -1,0 +1,1 @@
+SELECT * FROM fct_borough_collision_types
