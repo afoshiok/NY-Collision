@@ -1,14 +1,12 @@
-```sql bronx_collision_types
+```sql brooklyn_collision_types
 SELECT "CONTRIBUTING FACTOR VEHICLE 1" AS "name", cnt as "value" FROM ny_collisions.fct_borough_colision_types
-WHERE BOROUGH = 'BRONX' AND "CONTRIBUTING FACTOR VEHICLE 1" != 'Unspecified'
+WHERE BOROUGH = 'BROOKLYN' AND "CONTRIBUTING FACTOR VEHICLE 1" != 'Unspecified'
 ORDER BY cnt DESC
 LIMIT 5
 
 ```
-# The Bronx
-<PointMap
-lat=40.8448 long=73.8648
-/>
+# Brooklyn
+
 <ECharts config={
     {
       title: {
@@ -30,7 +28,7 @@ lat=40.8448 long=73.8648
           },
           roam: false,
           nodeClick: false,
-          data: [...bronx_collision_types],
+          data: [...brooklyn_collision_types],
           breadcrumb: {
             show: false
           },
