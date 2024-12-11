@@ -1,7 +1,9 @@
 ---
 title: "New York Collisions"
 ---
-This page can be found in your project at `/pages/index.md`. Make a change to the markdown file and save it to see the change take effect in your browser.
+A mini project, using data collision data from NYPD and NY DMV. The data was stored in DuckDB and transformed using DBT.
+
+## Collisions in 2024
 
 ```sql ns_borough_yoy
 SELECT * FROM ny_collisions.fct_borough_yoy
